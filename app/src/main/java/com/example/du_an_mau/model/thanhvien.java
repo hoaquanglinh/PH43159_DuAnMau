@@ -8,6 +8,11 @@ public class thanhvien {
     public thanhvien() {
     }
 
+    public thanhvien(String hoTen, int namSinh) {
+        this.hoTen = hoTen;
+        this.namSinh = namSinh;
+    }
+
     public thanhvien(int matv, String hoTen, int namSinh) {
         this.matv = matv;
         this.hoTen = hoTen;

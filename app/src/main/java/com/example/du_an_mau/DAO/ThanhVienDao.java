@@ -50,7 +50,6 @@ public class ThanhVienDao {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put("matv", tv.getMatv());
         values.put("hotentv", tv.getHoTen());
         values.put("namsinh", tv.getNamSinh());
 

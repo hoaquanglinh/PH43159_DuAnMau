@@ -45,6 +45,8 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolderSach
         holder.tens.setText(list.get(position).getTensach());
         holder.giathue.setText(String.valueOf(list.get(position).getGiaThue()));
         holder.maloaifksach.setText(list.get(position).getTenLoai());
+
+
     }
 
     @Override

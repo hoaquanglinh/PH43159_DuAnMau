@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -23,32 +24,49 @@ import com.example.du_an_mau.model.thanhvien;
 
 import java.util.ArrayList;
 
-public class ThanhVienAdapter extends RecyclerView.Adapter<ThanhVienAdapter.ViewHolderTV>{
+public class ThanhVienAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<thanhvien> list;
     ThanhVienDao dao;
 
+    TextView hotentv, matv, namsinhtv;
+    Button xoatv;
     public ThanhVienAdapter(Context context, ArrayList<thanhvien> list, ThanhVienDao dao) {
         this.context = context;
         this.list = list;
         this.dao = dao;
     }
 
-    @NonNull
     @Override
-    public ViewHolderTV onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = ((Activity)context).getLayoutInflater();
-        View view = inflater.inflate(R.layout.layout_thanhvien, null);
-        return new ViewHolderTV(view);
+    public int getCount() {
+        return list.size();
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolderTV holder, int position) {
-        holder.matv.setText(String.valueOf(list.get(position).getMatv()));
-        holder.hotentv.setText(list.get(position).getHoTen());
-        holder.namsinhtv.setText(String.valueOf(list.get(position).getNamSinh()));
+    public Object getItem(int position) {
+        return list.get(position);
+    }
 
-        holder.xoatv.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        LayoutInflater inflater = ((Activity)context).getLayoutInflater();
+        convertView = inflater.inflate(R.layout.layout_thanhvien, parent, false);
+
+        matv = convertView.findViewById(R.id.matv);
+        hotentv = convertView.findViewById(R.id.hotentv);
+        namsinhtv = convertView.findViewById(R.id.namsinhtv);
+        xoatv = convertView.findViewById(R.id.xoaTV);
+
+        matv.setText(String.valueOf(list.get(position).getMatv()));
+        hotentv.setText(list.get(position).getHoTen());
+        namsinhtv.setText(String.valueOf(list.get(position).getNamSinh()));
+
+        xoatv.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Thông báo");
@@ -56,7 +74,7 @@ public class ThanhVienAdapter extends RecyclerView.Adapter<ThanhVienAdapter.View
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        int id = list.get(holder.getAdapterPosition()).getMatv();
+                        int id = list.get(position).getMatv();
                         dao.xoatv(id);
                         list.clear();
                         list.addAll(dao.getData());
@@ -76,15 +94,15 @@ public class ThanhVienAdapter extends RecyclerView.Adapter<ThanhVienAdapter.View
             }
         });
 
-        holder.suatv.setOnClickListener(v -> {
-            thanhvien tv = list.get(holder.getAdapterPosition());
-            updatetv(tv);
+        convertView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                thanhvien tv = list.get(position);
+                updatetv(tv);
+                return false;
+            }
         });
-    }
-
-    @Override
-    public int getItemCount() {
-        return list.size();
+        return convertView;
     }
 
     public void updatetv(thanhvien tv) {
@@ -123,16 +141,4 @@ public class ThanhVienAdapter extends RecyclerView.Adapter<ThanhVienAdapter.View
         });
     }
 
-
-    public class ViewHolderTV extends RecyclerView.ViewHolder{
-        TextView hotentv, matv, namsinhtv;
-        Button suatv, xoatv;
-        public ViewHolderTV(@NonNull View itemView) {
-            super(itemView);
-            matv = itemView.findViewById(R.id.matv);
-            hotentv = itemView.findViewById(R.id.hotentv);
-            namsinhtv = itemView.findViewById(R.id.namsinhtv);
-            suatv = itemView.findViewById(R.id.suaTV);
-            xoatv = itemView.findViewById(R.id.xoaTV);
-        }
-    }}
+}

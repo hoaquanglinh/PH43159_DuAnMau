@@ -63,20 +63,10 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/xoaTV"
+        android:layout_width="45dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical">
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/suaTV"
-            android:layout_width="45dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/baseline_edit_24"/>
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/xoaTV"
-            android:layout_width="45dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/baseline_delete_24"/>
-    </LinearLayout>
+        android:layout_gravity="center"
+        android:background="@drawable/baseline_delete_24"/>
 </LinearLayout>

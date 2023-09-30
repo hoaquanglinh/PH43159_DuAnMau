@@ -7,12 +7,12 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ListView;
 
 import com.example.du_an_mau.DAO.ThanhVienDao;
 import com.example.du_an_mau.adapter.ThanhVienAdapter;
@@ -23,7 +23,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 public class frm_thanh_vien extends Fragment {
-    RecyclerView recyclerView;
+    ListView listViewTV;
     FloatingActionButton fac;
     thanhvien tv;
     ThanhVienDao dao;
@@ -34,17 +34,14 @@ public class frm_thanh_vien extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_frm_thanh_vien, container, false);
-        recyclerView = view.findViewById(R.id.recyclerViewTV);
+        listViewTV = view.findViewById(R.id.listViewTV);
         fac = view.findViewById(R.id.facTV);
 
         dao = new ThanhVienDao(getActivity(), new DBHelper(getActivity()));
         list = dao.getData();
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(linearLayoutManager);
-
         adapter = new ThanhVienAdapter(getContext(), list, dao);
-        recyclerView.setAdapter(adapter);
+        listViewTV.setAdapter(adapter);
 
         fac.setOnClickListener(new View.OnClickListener() {
             @Override

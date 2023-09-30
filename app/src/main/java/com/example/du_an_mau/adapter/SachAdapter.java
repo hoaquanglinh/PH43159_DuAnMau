@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -19,11 +20,14 @@ import com.example.du_an_mau.model.sach;
 
 import java.util.ArrayList;
 
-public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolderSach>{
+public class SachAdapter extends BaseAdapter {
 
     private Context context;
     private ArrayList<sach> list;
     SachDao dao;
+
+    TextView masach, tens, giathue, maloaifksach;
+    Button xoas;
 
     public SachAdapter(Context context, ArrayList<sach> list, SachDao dao) {
         this.context = context;
@@ -31,41 +35,37 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolderSach
         this.dao = dao;
     }
 
-    @NonNull
     @Override
-    public ViewHolderSach onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = ((Activity)context).getLayoutInflater();
-        View view = inflater.inflate(R.layout.layout_sach, null);
-        return new ViewHolderSach(view);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull ViewHolderSach holder, int position) {
-        holder.masach.setText(String.valueOf(list.get(position).getMasach()));
-        holder.tens.setText(list.get(position).getTensach());
-        holder.giathue.setText(String.valueOf(list.get(position).getGiaThue()));
-        holder.maloaifksach.setText(list.get(position).getTenLoai());
-
-
-    }
-
-    @Override
-    public int getItemCount() {
+    public int getCount() {
         return list.size();
     }
 
+    @Override
+    public Object getItem(int position) {
+        return list.get(position);
+    }
 
-    public class ViewHolderSach extends RecyclerView.ViewHolder{
-        TextView masach, tens, giathue, maloaifksach;
-        Button suas, xoas;
-        public ViewHolderSach(@NonNull View itemView) {
-            super(itemView);
-            masach = itemView.findViewById(R.id.masach);
-            tens = itemView.findViewById(R.id.tensach);
-            giathue = itemView.findViewById(R.id.giathue);
-            maloaifksach = itemView.findViewById(R.id.maloaifksach);
-            suas = itemView.findViewById(R.id.suasach);
-            xoas = itemView.findViewById(R.id.xoasach);
-        }
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        LayoutInflater inflater = ((Activity)context).getLayoutInflater();
+        convertView = inflater.inflate(R.layout.layout_sach, null);
+
+        masach = convertView.findViewById(R.id.masach);
+        tens = convertView.findViewById(R.id.tensach);
+        giathue = convertView.findViewById(R.id.giathue);
+        maloaifksach = convertView.findViewById(R.id.maloaifksach);
+        xoas = convertView.findViewById(R.id.xoasach);
+
+        masach.setText(String.valueOf(list.get(position).getMasach()));
+        tens.setText(list.get(position).getTensach());
+        giathue.setText(String.valueOf(list.get(position).getGiaThue()));
+        maloaifksach.setText(list.get(position).getTenLoai());
+
+        return convertView;
     }
 }

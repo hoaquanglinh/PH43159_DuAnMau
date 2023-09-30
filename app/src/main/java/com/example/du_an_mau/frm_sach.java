@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.example.du_an_mau.DAO.SachDao;
 import com.example.du_an_mau.adapter.SachAdapter;
@@ -19,7 +20,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 public class frm_sach extends Fragment {
-    RecyclerView recyclerView;
+    ListView listViewSach;
     FloatingActionButton fac;
     sach ls;
     SachDao dao;
@@ -31,17 +32,14 @@ public class frm_sach extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_frm_sach, container, false);
 
-        recyclerView = view.findViewById(R.id.recyclerViewSach);
+        listViewSach = view.findViewById(R.id.listViewSach);
         fac = view.findViewById(R.id.facSach);
 
         dao = new SachDao(getActivity(), new DBHelper(getActivity()));
         list = dao.getData();
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(linearLayoutManager);
-
         adapter = new SachAdapter(getContext(), list, dao);
-        recyclerView.setAdapter(adapter);
+        listViewSach.setAdapter(adapter);
 
         return view;
     }

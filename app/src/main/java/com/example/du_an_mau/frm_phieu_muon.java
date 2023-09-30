@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.example.du_an_mau.DAO.LoaiSachDao;
 import com.example.du_an_mau.DAO.PhieuMuonDao;
@@ -20,9 +21,10 @@ import com.example.du_an_mau.model.phieumuon;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class frm_phieu_muon extends Fragment {
-    RecyclerView recyclerView;
+    ListView listViewPM;
     FloatingActionButton fac;
     loaisach ls;
     PhieuMuonDao dao;
@@ -33,17 +35,14 @@ public class frm_phieu_muon extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_frm_phieu_muon, container, false);
 
-        recyclerView = view.findViewById(R.id.recyclerViewPM);
+        listViewPM = view.findViewById(R.id.listViewPM);
         fac = view.findViewById(R.id.facPhieuMuon);
 
         dao = new PhieuMuonDao(getActivity(), new DBHelper(getActivity()));
         list = dao.getData();
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(linearLayoutManager);
-
         adapter = new PhieuMuonAdapter(getContext(), list, dao);
-        recyclerView.setAdapter(adapter);
+        listViewPM.setAdapter(adapter);
 
         return view;
     }

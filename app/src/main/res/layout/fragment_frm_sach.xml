@@ -5,8 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".frm_sach">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewSach"
+    <ListView
+        android:id="@+id/listViewSach"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

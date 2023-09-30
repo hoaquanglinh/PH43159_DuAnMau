@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ListView;
 
 import com.example.du_an_mau.DAO.LoaiSachDao;
 import com.example.du_an_mau.adapter.LoaiSachAdapter;
@@ -23,7 +24,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 public class frm_loai_sach extends Fragment {
-    RecyclerView recyclerView;
+    ListView listViewLS;
     FloatingActionButton fac;
     loaisach ls;
     LoaiSachDao dao;
@@ -34,17 +35,14 @@ public class frm_loai_sach extends Fragment {
                              Bundle savedInstanceState) {
         View converView = inflater.inflate(R.layout.fragment_frm_loai_sach, container, false);
 
-        recyclerView = converView.findViewById(R.id.recyclerViewLS);
+        listViewLS = converView.findViewById(R.id.listViewLS);
         fac = converView.findViewById(R.id.facLS);
 
         dao = new LoaiSachDao(getActivity(), new DBHelper(getActivity()));
         list = dao.getData();
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(linearLayoutManager);
-
         adapter = new LoaiSachAdapter(getContext(), list, dao);
-        recyclerView.setAdapter(adapter);
+        listViewLS.setAdapter(adapter);
 
         fac.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +51,7 @@ public class frm_loai_sach extends Fragment {
                 addloaisach(ls);
             }
         });
+
         return converView;
     }
 

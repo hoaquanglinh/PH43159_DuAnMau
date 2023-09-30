@@ -86,11 +86,6 @@
         android:gravity="center"
         android:orientation="vertical">
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/suasach"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/baseline_edit_24"/>
-        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/xoasach"
             android:layout_width="60dp"
             android:layout_height="wrap_content"

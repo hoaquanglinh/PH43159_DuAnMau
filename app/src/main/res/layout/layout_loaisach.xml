@@ -48,20 +48,11 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/sualoaisach"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:background="@drawable/baseline_edit_24"/>
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/xoaloaisach"
-            android:layout_width="45dp"
-            android:layout_gravity="right"
-            android:layout_height="45dp"
-            android:background="@drawable/baseline_delete_24"/>
-    </LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/xoaloaisach"
+        android:layout_width="45dp"
+        android:layout_gravity="center"
+        android:layout_height="45dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/baseline_delete_24"/>
 </LinearLayout>

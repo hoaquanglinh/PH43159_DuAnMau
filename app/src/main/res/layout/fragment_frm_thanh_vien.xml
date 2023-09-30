@@ -5,8 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".frm_thanh_vien">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewTV"
+    <ListView
+        android:id="@+id/listViewTV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

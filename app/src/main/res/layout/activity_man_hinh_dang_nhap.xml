@@ -8,23 +8,11 @@
     android:orientation="vertical"
     android:gravity="center_vertical"
     android:padding="13dp">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Chào mừng bạn đã trở lại,"
-        android:textColor="#03A9F4"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Vui lòng đăng nhập để tiếp tục"
-        android:textColor="@color/black"
-        android:textSize="25dp"
-        android:textStyle="bold"
-        android:layout_marginBottom="20dp"
-        />
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:src="@drawable/logo"/>
     <EditText
         android:id="@+id/edtUserName"
         android:layout_width="match_parent"

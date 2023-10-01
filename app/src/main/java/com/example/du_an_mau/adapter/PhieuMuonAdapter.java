@@ -1,12 +1,16 @@
 package com.example.du_an_mau.adapter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,7 +20,9 @@ import com.example.du_an_mau.DAO.PhieuMuonDao;
 import com.example.du_an_mau.R;
 import com.example.du_an_mau.model.phieumuon;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 public class PhieuMuonAdapter extends BaseAdapter {
     private Context context;
@@ -25,6 +31,7 @@ public class PhieuMuonAdapter extends BaseAdapter {
 
     TextView maphieu, mathanhvienfkpm, masachfkpm, tienthue, trangthai, ngaythue;
     Button xoa;
+
     public PhieuMuonAdapter(Context context, ArrayList<phieumuon> list, PhieuMuonDao dao) {
         this.context = context;
         this.list = list;
@@ -72,9 +79,36 @@ public class PhieuMuonAdapter extends BaseAdapter {
         trangthai.setText(trangThai);
         ngaythue.setText(list.get(position).getNgaythue());
 
+        xoa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Thông báo");
+                builder.setMessage("Bạn có chắc chắn muốn xóa không?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        int id = list.get(position).getMapm();
+                        dao.xoaPM(id);
+                        list.clear();
+                        list.addAll(dao.getData());
+                        notifyDataSetChanged();
+                    }
+                });
+
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+
         return convertView;
     }
-
-
 
 }

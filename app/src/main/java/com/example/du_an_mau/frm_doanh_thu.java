@@ -25,7 +25,7 @@ public class frm_doanh_thu extends Fragment {
     Button btnTuNgay, btnDenNgay, btnDoanhThu;
     EditText edTuNgay, edDenNgay;
     TextView tvDoanhThu;
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     int mYear, mMonth, mDay;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,7 +47,7 @@ public class frm_doanh_thu extends Fragment {
                 mMonth = calendar.get(Calendar.MONTH);
                 mDay = calendar.get(Calendar.DAY_OF_MONTH);
                 DatePickerDialog d = new DatePickerDialog(getContext(),
-                        0, mDateTuNgay, mYear, mMonth, mDay);
+                        0, mDateTuNgay, mDay, mMonth, mYear);
                 d.show();
             }
         });
@@ -60,7 +60,7 @@ public class frm_doanh_thu extends Fragment {
                 mMonth = calendar.get(Calendar.MONTH);
                 mDay = calendar.get(Calendar.DAY_OF_MONTH);
                 DatePickerDialog d = new DatePickerDialog(getContext(),
-                        0, mDateDenNgay, mYear, mMonth, mDay);
+                        0, mDateDenNgay, mDay, mMonth, mYear);
                 d.show();
             }
         });
@@ -87,7 +87,7 @@ public class frm_doanh_thu extends Fragment {
             mYear = year;
             mMonth = month;
             mDay = dayOfMonth;
-            GregorianCalendar calendar = new GregorianCalendar(mYear, mMonth, mDay);
+            GregorianCalendar calendar = new GregorianCalendar(mDay, mMonth, mYear);
             edTuNgay.setText(sdf.format(calendar.getTime()));
         }
     };
@@ -98,7 +98,7 @@ public class frm_doanh_thu extends Fragment {
             mYear = year;
             mMonth = month;
             mDay = dayOfMonth;
-            GregorianCalendar calendar = new GregorianCalendar(mYear, mMonth, mDay);
+            GregorianCalendar calendar = new GregorianCalendar(mDay, mMonth, mYear);
             edDenNgay.setText(sdf.format(calendar.getTime()));
         }
     };

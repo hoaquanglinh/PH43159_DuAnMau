@@ -14,6 +14,23 @@ public class phieumuon {
     public phieumuon() {
     }
 
+    public phieumuon(int matv, int masach, Double tienthue, String ngaythue) {
+        this.matv = matv;
+        this.masach = masach;
+        this.tienthue = tienthue;
+        this.ngaythue = ngaythue;
+    }
+
+    public phieumuon(int mapm, String matt, int matv, int masach, Double tienthue, int trangthai, String ngaythue) {
+        this.mapm = mapm;
+        this.matt = matt;
+        this.matv = matv;
+        this.masach = masach;
+        this.tienthue = tienthue;
+        this.trangthai = trangthai;
+        this.ngaythue = ngaythue;
+    }
+
     public phieumuon(int mapm, String matt, int matv, String tentv, int masach, String tensach, Double tienthue, int trangthai, String ngaythue) {
         this.mapm = mapm;
         this.matt = matt;

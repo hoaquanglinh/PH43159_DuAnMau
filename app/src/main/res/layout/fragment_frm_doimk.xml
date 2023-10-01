@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".frm_doimk"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edPassOld"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:hint="Mật khẩu cũ"/>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edPassChange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:hint="Mật khẩu"/>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edRePassChange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:hint="Mật khẩu"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btndoimk"
+            android:layout_width="185dp"
+            android:layout_height="40dp"
+            android:text="Đổi mật khẩu"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnhuytdoimk"
+            android:layout_marginLeft="15dp"
+            android:layout_width="185dp"
+            android:layout_height="40dp"
+            android:text="Hủy"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            />
+    </LinearLayout>
+
+</LinearLayout>

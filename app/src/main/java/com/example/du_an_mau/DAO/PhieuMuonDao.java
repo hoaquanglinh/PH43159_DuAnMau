@@ -56,7 +56,6 @@ public class PhieuMuonDao {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put("mapm", pm.getMapm());
         values.put("matt", pm.getMatt());
         values.put("matv", pm.getMatv());
         values.put("masach", pm.getMasach());

@@ -16,10 +16,10 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".ManHinhDangNhap"
+            android:name=".ManHinhChinh"
             android:exported="false" />
         <activity
-            android:name=".ManHinhChinh"
+            android:name=".ManHinhDangNhap"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

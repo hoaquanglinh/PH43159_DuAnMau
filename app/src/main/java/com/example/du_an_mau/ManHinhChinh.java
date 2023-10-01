@@ -48,6 +48,8 @@ public class ManHinhChinh extends AppCompatActivity {
                     fragment = new frm_top10();
                 }else if(item.getItemId() == R.id.doanhthu){
                     fragment = new frm_doanh_thu();
+                }else if(item.getItemId() == R.id.doimatkhau){
+                    fragment = new frm_doimk();
                 }
                 getSupportFragmentManager()
                         .beginTransaction()

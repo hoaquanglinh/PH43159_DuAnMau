@@ -20,7 +20,8 @@
             android:id="@+id/ed_tuNgay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="YYYY/MM/DD"
+            android:layout_marginLeft="15dp"
+            android:hint="dd/MM/yyyy"
             />
 
     </LinearLayout>
@@ -42,7 +43,8 @@
             android:id="@+id/ed_denNgay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="YYYY/MM/DD"
+            android:layout_marginLeft="15dp"
+            android:hint="dd/MM/yyyy"
             />
 
     </LinearLayout>

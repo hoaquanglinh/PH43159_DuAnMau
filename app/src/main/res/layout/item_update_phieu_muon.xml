@@ -1,6 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/udmatv"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:text="Thành viên"
+            android:textColor="#E53935" />
+
+        <Spinner
+            android:id="@+id/spnThanhVienPM"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/udmasach"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:text="Sách:"
+            android:textColor="#E53935"/>
+
+        <Spinner
+            android:id="@+id/spnSachPM"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:text="Tiền thuê:"/>
+        <TextView
+            android:id="@+id/tvUdTien"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:layout_marginLeft="15dp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <CheckBox
+            android:layout_marginLeft="20dp"
+            android:id="@+id/chkudTrangThai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"/>
+        <TextView
+            android:id="@+id/udtrangthai"
+            android:layout_marginLeft="15dp"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:hint="Trạng thái"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/addngaythue"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:text="Ngày thuê:"
+            android:textSize="18dp"
+            android:textAllCaps="false" />
+
+        <EditText
+            android:id="@+id/edudngayThue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:hint="dd/MM/yyy" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnUdPM"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#1E88E5"
+            android:text="Sửa"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/btnHuyUdPM"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#1E88E5"
+            android:text="Hủy"
+            android:textSize="20dp" />
+    </LinearLayout>
 
 </LinearLayout>

@@ -29,27 +29,6 @@ public class ManHinhDangNhap extends AppCompatActivity {
 
         dao = new ThuThuDao(this, new DBHelper(this));
 
-//        findViewById(R.id.btnLogin).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String user = edtUser.getText().toString();
-//                String pass = edtPass.getText().toString();
-//
-//                if(thuThuDao.checkDangNhap(user, pass)){
-//                    SharedPreferences sharedPreferences = getSharedPreferences("thongtin", MODE_PRIVATE);
-//                    SharedPreferences.Editor editor = sharedPreferences.edit();
-//                    editor.putString("matt", user);
-//                    editor.commit();
-//
-//                    Toast.makeText(ManHinhDangNhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(ManHinhDangNhap.this, ManHinhChinh.class);
-//                    startActivity(intent);
-//                }else{
-//                    Toast.makeText(ManHinhDangNhap.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
-
         SharedPreferences pref = getSharedPreferences("user_file", MODE_PRIVATE);
         String user = pref.getString("username", "");
         String pass = pref.getString("password", "");
@@ -70,6 +49,11 @@ public class ManHinhDangNhap extends AppCompatActivity {
         findViewById(R.id.btnLogin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences sharedPreferences = getSharedPreferences("user_file", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("matt", user);
+                editor.commit();
+
                 checkLogin();
             }
         });

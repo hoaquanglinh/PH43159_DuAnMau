@@ -3,6 +3,8 @@ package com.example.du_an_mau;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -34,8 +36,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class frm_phieu_muon extends Fragment {
     ListView listViewPM;
@@ -48,8 +52,7 @@ public class frm_phieu_muon extends Fragment {
     ArrayList<sach> listS;
     int mYear, mMonth, mDay;
 
-    Button ngaythue;
-    EditText ngaythueso;
+    EditText edaddngaythue;
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy");
 
     @Override
@@ -88,25 +91,12 @@ public class frm_phieu_muon extends Fragment {
         Spinner spnTV = view.findViewById(R.id.spnThanhVien);
         Spinner spnSach = view.findViewById(R.id.spnSach);
         TextView tvTien = view.findViewById(R.id.tvTien);
-        ngaythue = view.findViewById(R.id.addngaythue);
-        ngaythueso = view.findViewById(R.id.edtaddNgayThue);
+        edaddngaythue = view.findViewById(R.id.edaddngayThue);
         CheckBox checkBox = view.findViewById(R.id.chkSuaTrangThai);
         TextView trangThai = view.findViewById(R.id.addtrangthai);
         Button add = view.findViewById(R.id.btnaddPM);
         Button cancel = view.findViewById(R.id.btnHuyAddPM);
 
-        ngaythue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Calendar calendar = Calendar.getInstance();
-                mYear = calendar.get(Calendar.YEAR);
-                mMonth = calendar.get(Calendar.MONTH);
-                mDay = calendar.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
-                        ngayThue, mDay, mMonth, mYear);
-                datePickerDialog.show();
-            }
-        });
 
         SachDao sachDao = new SachDao(getActivity(), new DBHelper(getActivity()));
         listS = sachDao.getData();
@@ -130,6 +120,10 @@ public class frm_phieu_muon extends Fragment {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // lay ma tt
+                SharedPreferences sharedPreferences = getContext().getSharedPreferences("user_file", Context.MODE_PRIVATE);
+                String matt = sharedPreferences.getString("matt", "");
+
                 // lay ma thanh vien
                 HashMap<String, Object> hsTV = (HashMap<String, Object>) spnTV.getSelectedItem();
                 int matv = (int) hsTV.get("matv");
@@ -138,10 +132,14 @@ public class frm_phieu_muon extends Fragment {
                 HashMap<String, Object> hsSach = (HashMap<String, Object>) spnSach.getSelectedItem();
                 int masach = (int) hsSach.get("masach");
 
-                 Double tienThue = Double.valueOf(tvTien.getText().toString());
+                Double tienThue = Double.valueOf(tvTien.getText().toString());
 
                 // lấy ngày thuê
-                String ngaythueStr = ngaythueso.getText().toString();
+//                Date currentTime = Calendar.getInstance().getTime();
+//                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+//                edaddngaythue.setText(simpleDateFormat.format(currentTime));
+
+                String ngaythueStr = edaddngaythue.getText().toString();
 
                 // lấy trạng thái
                 boolean trangThaiBool = checkBox.isChecked();
@@ -149,6 +147,7 @@ public class frm_phieu_muon extends Fragment {
 
                 // tạo đối tượng phiếu mượn mới
                 phieumuon pm = new phieumuon();
+                pm.setMatt(matt);
                 pm.setMatv(matv);
                 pm.setMasach(masach);
                 pm.setTienthue(tienThue);
@@ -210,12 +209,4 @@ public class frm_phieu_muon extends Fragment {
 
         spnSach.setAdapter(adapterSach);
     }
-
-    private DatePickerDialog.OnDateSetListener ngayThue = new DatePickerDialog.OnDateSetListener() {
-        public void onDateSet(DatePicker view, int year, int monthOfYear,
-                              int dayOfMonth) {
-            Calendar calendar = new GregorianCalendar(dayOfMonth, monthOfYear, year);
-            ngaythueso.setText(sdf.format(calendar.getTime()));
-        }
-    };
 }

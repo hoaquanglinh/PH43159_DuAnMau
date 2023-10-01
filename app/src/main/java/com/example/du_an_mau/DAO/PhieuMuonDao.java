@@ -88,10 +88,10 @@ public class PhieuMuonDao {
         long check = db.update("phieumuon", values, "mapm =?", new String[]{String.valueOf(pm.getMapm())});
 
         if (check > 0) {
-            Toast.makeText(context, "Thêm thành công",
+            Toast.makeText(context, "Sửa thành công",
                     Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(context, "Thêm thất bại",
+            Toast.makeText(context, "Sửa thất bại",
                     Toast.LENGTH_SHORT).show();
         }
     }

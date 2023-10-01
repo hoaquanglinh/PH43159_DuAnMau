@@ -14,10 +14,12 @@ public class phieumuon {
     public phieumuon() {
     }
 
-    public phieumuon(int matv, int masach, Double tienthue, String ngaythue) {
+    public phieumuon(int mapm, int matv, int masach, Double tienthue, int trangthai, String ngaythue) {
+        this.mapm = mapm;
         this.matv = matv;
         this.masach = masach;
         this.tienthue = tienthue;
+        this.trangthai = trangthai;
         this.ngaythue = ngaythue;
     }
 

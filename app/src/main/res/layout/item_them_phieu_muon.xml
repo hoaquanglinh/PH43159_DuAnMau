@@ -85,20 +85,19 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <androidx.appcompat.widget.AppCompatButton
+        <TextView
             android:id="@+id/addngaythue"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:text="Ngày thuê:"
             android:textSize="18dp"
-            android:textAllCaps="false"
-            android:background="@drawable/btn_ngay_thue"/>
+            android:textAllCaps="false" />
 
         <EditText
-            android:layout_marginLeft="30dp"
-            android:id="@+id/edtaddNgayThue"
+            android:id="@+id/edaddngayThue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
             android:hint="dd/MM/yyy" />
     </LinearLayout>
         <LinearLayout

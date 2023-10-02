@@ -52,7 +52,6 @@ public class SachDao {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put("masach", sc.getMasach());
         values.put("tensach", sc.getTensach());
         values.put("giathue", sc.getGiaThue());
         values.put("maloai", sc.getMaloai());

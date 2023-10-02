@@ -166,7 +166,12 @@ public class frm_phieu_muon extends Fragment {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.dismiss();
+                spnTV.setSelection(0);
+                spnSach.setSelection(0);
+                tvTien.setText("");
+                checkBox.setChecked(false);
+                edaddngaythue.setText("");
+
             }
         });
     }

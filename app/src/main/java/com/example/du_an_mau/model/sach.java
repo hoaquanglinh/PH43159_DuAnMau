@@ -18,6 +18,12 @@ public class sach {
         this.soLuongDaMuon = soLuongDaMuon;
     }
 
+    public sach(String tensach, Double giaThue, int maloai) {
+        this.tensach = tensach;
+        this.giaThue = giaThue;
+        this.maloai = maloai;
+    }
+
     public sach(int masach, String tensach, Double giaThue, int maloai) {
         this.masach = masach;
         this.tensach = tensach;

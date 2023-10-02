@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -48,14 +49,22 @@ public class ManHinhChinh extends AppCompatActivity {
                     fragment = new frm_top10();
                 }else if(item.getItemId() == R.id.doanhthu){
                     fragment = new frm_doanh_thu();
+                }else if(item.getItemId() == R.id.taotaikhoan){
+                    fragment = new frm_tao_tai_khoan();
                 }else if(item.getItemId() == R.id.doimatkhau){
                     fragment = new frm_doimk();
+                }else{
+                    Intent intent = new Intent(ManHinhChinh.this, ManHinhDangNhap.class);
+                    startActivity(intent);
                 }
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.frameLayout, fragment)
-                        .commit();
-                drawerLayout.close();
+
+                if (fragment != null) {
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.frameLayout, fragment)
+                            .commit();
+                    drawerLayout.close();
+                }
                 return true;
             }
         });

@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -196,6 +197,19 @@ public class PhieuMuonAdapter extends BaseAdapter {
 
         getDataThanhVien(spnUdTV);
         getDataSach(spnUdSach);
+
+        spnUdSach.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                sach selectedBook = listS.get(position);
+                tvTien.setText(String.valueOf(selectedBook.getGiaThue()));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         spnUdTV.setSelection(pm.getMatv() - 1);
         spnUdSach.setSelection(pm.getMasach() - 1);

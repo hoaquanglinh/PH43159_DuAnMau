@@ -47,7 +47,7 @@ public class frm_doanh_thu extends Fragment {
                 mMonth = calendar.get(Calendar.MONTH);
                 mDay = calendar.get(Calendar.DAY_OF_MONTH);
                 DatePickerDialog d = new DatePickerDialog(getContext(),
-                        0, mDateTuNgay, mDay, mMonth, mYear);
+                        0, mDateTuNgay, mYear, mMonth, mDay);
                 d.show();
             }
         });
@@ -60,13 +60,10 @@ public class frm_doanh_thu extends Fragment {
                 mMonth = calendar.get(Calendar.MONTH);
                 mDay = calendar.get(Calendar.DAY_OF_MONTH);
                 DatePickerDialog d = new DatePickerDialog(getContext(),
-                        0, mDateDenNgay, mDay, mMonth, mYear);
+                        0, mDateDenNgay, mYear, mMonth, mDay);
                 d.show();
             }
         });
-
-        String tungay = edTuNgay.getText().toString();
-        String denngay = edDenNgay.getText().toString();
 
         btnDoanhThu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +71,7 @@ public class frm_doanh_thu extends Fragment {
                 String tuNgay = edTuNgay.getText().toString();
                 String denNgay = edDenNgay.getText().toString();
                 DoanhThuDao dao = new DoanhThuDao(getContext(), new DBHelper(getContext()));
-                tvDoanhThu.setText("Doanh thu: "+dao.getDoanhThu(tungay, denngay));
+                tvDoanhThu.setText("Doanh thu: " + dao.getDoanhThu(tuNgay, denNgay));
             }
         });
 
@@ -87,7 +84,7 @@ public class frm_doanh_thu extends Fragment {
             mYear = year;
             mMonth = month;
             mDay = dayOfMonth;
-            GregorianCalendar calendar = new GregorianCalendar(mDay, mMonth, mYear);
+            GregorianCalendar calendar = new GregorianCalendar(mYear, mMonth, mDay);
             edTuNgay.setText(sdf.format(calendar.getTime()));
         }
     };
@@ -98,7 +95,7 @@ public class frm_doanh_thu extends Fragment {
             mYear = year;
             mMonth = month;
             mDay = dayOfMonth;
-            GregorianCalendar calendar = new GregorianCalendar(mDay, mMonth, mYear);
+            GregorianCalendar calendar = new GregorianCalendar(mYear, mMonth, mDay);
             edDenNgay.setText(sdf.format(calendar.getTime()));
         }
     };

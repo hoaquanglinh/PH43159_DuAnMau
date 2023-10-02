@@ -197,13 +197,8 @@ public class PhieuMuonAdapter extends BaseAdapter {
         getDataThanhVien(spnUdTV);
         getDataSach(spnUdSach);
 
-        HashMap<String, Object> hsTV = (HashMap<String, Object>) spnUdTV.getSelectedItem();
-        int matv = (int) hsTV.get("matv");
-        spnUdTV.setSelection(matv);
-
-        HashMap<String, Object> hsSach = (HashMap<String, Object>) spnUdSach.getSelectedItem();
-        int masach = (int) hsSach.get("masach");
-        spnUdSach.setSelection(masach);
+        spnUdTV.setSelection(pm.getMatv() - 1);
+        spnUdSach.setSelection(pm.getMasach() - 1);
 
         tvTien.setText(String.valueOf(pm.getTienthue()));
 

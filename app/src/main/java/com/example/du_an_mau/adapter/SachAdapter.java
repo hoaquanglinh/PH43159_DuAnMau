@@ -134,20 +134,7 @@ public class SachAdapter extends BaseAdapter {
 
         getDataLS(spnudLS);
 
-        spnudLS.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (listLS.get(position).getMaloai() == s.getMaloai()) {
-                    spnudLS.setSelection(position);
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
-//        spnudLS.setSelection(maloai);
+        spnudLS.setSelection(s.getMaloai() - 1);
         edudTen.setText(s.getTensach());
         edudGiaThue.setText(String.valueOf(s.getGiaThue()));
 

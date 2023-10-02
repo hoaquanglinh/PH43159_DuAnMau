@@ -53,7 +53,7 @@ public class frm_phieu_muon extends Fragment {
     int mYear, mMonth, mDay;
 
     EditText edaddngaythue;
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy");
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -17,7 +17,7 @@ public class DoanhThuDao {
 
     public int getDoanhThu(String ngaybatdau, String ngayketthuc){
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT SUM(tienthue) FROM  PHIEUMUON WHERE ngay BETWEEN ? AND ?", new String[]{ngaybatdau, ngayketthuc});
+        Cursor cursor = db.rawQuery("SELECT SUM(tienthue) FROM PHIEUMUON WHERE ngay BETWEEN ? AND ?", new String[]{ngaybatdau, ngayketthuc});
         if(cursor.getCount() != 0){
             cursor.moveToFirst();
             return cursor.getInt(0);

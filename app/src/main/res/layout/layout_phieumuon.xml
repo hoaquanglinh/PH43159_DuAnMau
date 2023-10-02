@@ -97,6 +97,7 @@
                 android:layout_height="wrap_content"
                 android:text="Ngày thuê: "
                 android:textSize="17dp" />
+
             <TextView
                 android:id="@+id/ngaythue"
                 android:layout_width="match_parent"

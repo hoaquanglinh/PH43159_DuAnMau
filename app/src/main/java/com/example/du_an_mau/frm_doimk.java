@@ -1,6 +1,7 @@
 package com.example.du_an_mau;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.du_an_mau.DAO.ThuThuDao;
+import com.example.du_an_mau.database.DBHelper;
 import com.example.du_an_mau.model.thuthu;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -44,10 +46,27 @@ public class frm_doimk extends Fragment {
         btnsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences pref = getActivity().getSharedPreferences("user_file", Context.MODE_PRIVATE);
-                String user = pref.getString("username", "");
-                if(validate()>0){
-//                    thuthu thuthu = dao.get
+                String oldPass = edPassOld.getText().toString();
+                String newPass = edPass.getText().toString();
+                String newRePass = edRePass.getText().toString();
+
+                if(newPass.equals(newRePass)){
+                    SharedPreferences sharedPreferences = getContext().getSharedPreferences("user_file", Context.MODE_PRIVATE);
+                    String matt = sharedPreferences.getString("matt", "");
+
+                    ThuThuDao thuThuDao = new ThuThuDao(getContext(), new DBHelper(getContext()));
+                    boolean check = thuThuDao.capNhatMatKhau(matt, oldPass, newPass);
+
+                    if(check){
+                        Toast.makeText(getContext(), "Cập nhật mật khẩu thành công", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getActivity(), ManHinhDangNhap.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(getContext(), "Nhập sai mật khẩu", Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    Toast.makeText(getContext(), "Mật khẩu không trùng với nhau", Toast.LENGTH_SHORT).show();
                 }
             }
         });

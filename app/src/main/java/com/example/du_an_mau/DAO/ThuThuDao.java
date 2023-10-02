@@ -35,6 +35,23 @@ public class ThuThuDao {
         }
     }
 
+    public boolean capNhatMatKhau(String username, String oldPass, String newPass){
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery("select * from thuthu where matt = ? and matkhau = ?", new String[]{username, oldPass});
+        if(cursor.getCount() > 0){
+            ContentValues values = new ContentValues();
+            values.put("matkhau", newPass);
+            long check = db.update("thuthu", values, "matt = ?", new String[]{username});
+            if(check == -1){
+                return false;
+            }else{
+                return true;
+            }
+        }else {
+            return false;
+        }
+    }
+
     public ArrayList<thanhvien> getData(){
         ArrayList<thanhvien> list = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getWritableDatabase();

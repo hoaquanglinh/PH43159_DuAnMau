@@ -71,7 +71,6 @@ public class ManHinhDangNhap extends AppCompatActivity {
             edit.putString("password", p);
             edit.putBoolean("remember", status);
         }
-        // luu lai toan bo
         edit.commit();
     }
 

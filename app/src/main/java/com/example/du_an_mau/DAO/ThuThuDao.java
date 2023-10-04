@@ -52,18 +52,18 @@ public class ThuThuDao {
         }
     }
 
-    public ArrayList<thanhvien> getData(){
-        ArrayList<thanhvien> list = new ArrayList<>();
+    public ArrayList<thuthu> getData(){
+        ArrayList<thuthu> list = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         try{
-            Cursor cursor = db.rawQuery("select * from thanhvien", null);
+            Cursor cursor = db.rawQuery("select * from thuthu", null);
             if(cursor.getCount()>0){
                 cursor.moveToFirst();
                 while (!cursor.isAfterLast()){
-                    list.add(new thanhvien(
-                            cursor.getInt(0),
+                    list.add(new thuthu(
+                            cursor.getString(0),
                             cursor.getString(1),
-                            cursor.getInt(2)
+                            cursor.getString(2)
                     ));
                     cursor.moveToNext();
                 }

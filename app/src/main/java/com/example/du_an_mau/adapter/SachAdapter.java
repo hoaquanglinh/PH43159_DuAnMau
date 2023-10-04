@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -145,16 +146,30 @@ public class SachAdapter extends BaseAdapter {
                 int maloai = (int) hsTV.get("maloai");
 
                 String tenSach = edudTen.getText().toString();
-                Double giaThue = Double.parseDouble(edudGiaThue.getText().toString());
+                String giaThueSach = edudGiaThue.getText().toString();
 
-                sach sach = new sach(s.getMasach(), tenSach, giaThue, maloai);
+                if (tenSach.isEmpty()||giaThueSach.isEmpty()){
+                    Toast.makeText(context, "Không được để trống", Toast.LENGTH_SHORT).show();
+                }else {
+                    try{
+                        Double giaThue = Double.parseDouble(giaThueSach);
 
-                dao.suaSach(sach);
-                list.clear();
-                list.addAll(dao.getData());
-                notifyDataSetChanged();
+                        if (giaThue < 0){
+                            Toast.makeText(context, "Giá thuê phải lớn hơn 0", Toast.LENGTH_SHORT).show();
+                        }else {
+                            sach sach = new sach(s.getMasach(), tenSach, giaThue, maloai);
 
-                dialog.dismiss();
+                            dao.suaSach(sach);
+                            list.clear();
+                            list.addAll(dao.getData());
+                            notifyDataSetChanged();
+
+                            dialog.dismiss();
+                        }
+                    }catch (NumberFormatException e){
+                        Toast.makeText(context, "Giá thuê phải là số", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
 

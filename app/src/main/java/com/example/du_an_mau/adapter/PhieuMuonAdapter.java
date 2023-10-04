@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,6 +35,7 @@ import com.example.du_an_mau.model.thanhvien;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 
@@ -236,14 +238,20 @@ public class PhieuMuonAdapter extends BaseAdapter {
                 boolean trangThaiBool = chkTT.isChecked();
                 int trangthai = trangThaiBool ? 1 : 0;
 
-                phieumuon pm1 = new phieumuon(pm.getMapm(), matv, masach, tienThue, trangthai, ngaythueStr);
+                if(ngaythueStr.isEmpty()){
+                    Toast.makeText(context, "Không được để trống", Toast.LENGTH_SHORT).show();
+                }else if(!isValidDate(ngaythueStr)){
+                    Toast.makeText(context, "Ngày thuê không hợp lệ", Toast.LENGTH_SHORT).show();
+                }else{
+                    phieumuon pm1 = new phieumuon(pm.getMapm(), matv, masach, tienThue, trangthai, ngaythueStr);
 
-                dao.suaPM(pm1);
-                list.clear();
-                list.addAll(dao.getData());
-                notifyDataSetChanged();
+                    dao.suaPM(pm1);
+                    list.clear();
+                    list.addAll(dao.getData());
+                    notifyDataSetChanged();
 
-                dialog.dismiss();
+                    dialog.dismiss();
+                }
             }
         });
 
@@ -262,5 +270,17 @@ public class PhieuMuonAdapter extends BaseAdapter {
                 chkTT.setChecked(false);
             }
         });
+    }
+
+    public boolean isValidDate(String str) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        dateFormat.setLenient(false);
+
+        try {
+            Date date = dateFormat.parse(str);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

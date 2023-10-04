@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.du_an_mau.DAO.LoaiSachDao;
 import com.example.du_an_mau.adapter.LoaiSachAdapter;
@@ -71,13 +72,17 @@ public class frm_loai_sach extends Fragment {
             public void onClick(View v) {
                 String tenls = addtenLS.getText().toString();
 
-                loaisach ls = new loaisach(tenls);
+                if(tenls.isEmpty()){
+                    Toast.makeText(getContext(), "Không được để trống", Toast.LENGTH_SHORT).show();
+                }else{
+                    loaisach ls = new loaisach(tenls);
 
-                dao.themLS(ls);
-                list.clear();
-                list.addAll(dao.getData());
-                adapter.notifyDataSetChanged();
-                dialog.dismiss();
+                    dao.themLS(ls);
+                    list.clear();
+                    list.addAll(dao.getData());
+                    adapter.notifyDataSetChanged();
+                    dialog.dismiss();
+                }
             }
         });
 

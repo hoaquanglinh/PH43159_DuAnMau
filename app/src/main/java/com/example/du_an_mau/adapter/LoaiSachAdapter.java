@@ -12,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -116,13 +117,17 @@ public class LoaiSachAdapter extends BaseAdapter {
         convertView.findViewById(R.id.btnupdateLS).setOnClickListener(v -> {
             String tenloai = udtenloai.getText().toString();
 
-            loaisach sp1 = new loaisach(ls.getMaloai(), tenloai);
+            if(tenloai.isEmpty()){
+                Toast.makeText(context, "Không được để trống", Toast.LENGTH_SHORT).show();
+            }else{
+                loaisach sp1 = new loaisach(ls.getMaloai(), tenloai);
 
-            dao.suaLS(sp1);
-            list.clear();
-            list.addAll(dao.getData());
-            notifyDataSetChanged();
-            dialog.dismiss();
+                dao.suaLS(sp1);
+                list.clear();
+                list.addAll(dao.getData());
+                notifyDataSetChanged();
+                dialog.dismiss();
+            }
         });
 
         convertView.findViewById(R.id.btnHuyLS).setOnClickListener(new View.OnClickListener() {

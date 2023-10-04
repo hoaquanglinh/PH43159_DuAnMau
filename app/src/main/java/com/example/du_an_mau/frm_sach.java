@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.du_an_mau.DAO.LoaiSachDao;
 import com.example.du_an_mau.DAO.SachDao;
@@ -81,18 +82,32 @@ public class frm_sach extends Fragment {
                 HashMap<String, Object> hsTV = (HashMap<String, Object>) spnLS.getSelectedItem();
                 int maloai = (int) hsTV.get("maloai");
 
-                Double giathue = Double.parseDouble(edaddGiaThue.getText().toString());
+                String giaThueSach = edaddGiaThue.getText().toString();
 
                 String tenSach = edaddTen.getText().toString();
 
-                sach sach = new sach(tenSach, giathue, maloai);
+                if (tenSach.isEmpty()||giaThueSach.isEmpty()){
+                    Toast.makeText(getContext(), "Không được để trống", Toast.LENGTH_SHORT).show();
+                }else {
+                    try {
+                        Double giaThue = Double.parseDouble(giaThueSach);
 
-                dao.themSach(sach);
-                list.clear();
-                list.addAll(dao.getData());
-                adapter.notifyDataSetChanged();
+                        if (giaThue < 0) {
+                            Toast.makeText(getContext(), "Giá thuê phải lớn hơn 0", Toast.LENGTH_SHORT).show();
+                        } else {
+                            sach sach = new sach(tenSach, giaThue, maloai);
 
-                dialog.dismiss();
+                            dao.themSach(sach);
+                            list.clear();
+                            list.addAll(dao.getData());
+                            adapter.notifyDataSetChanged();
+
+                            dialog.dismiss();
+                        }
+                    } catch (NumberFormatException e) {
+                        Toast.makeText(getContext(), "Giá thuê phải là số", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
 

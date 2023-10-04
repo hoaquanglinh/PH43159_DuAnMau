@@ -21,6 +21,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.du_an_mau.DAO.PhieuMuonDao;
 import com.example.du_an_mau.DAO.SachDao;
@@ -146,20 +147,26 @@ public class frm_phieu_muon extends Fragment {
                 int trangthai = trangThaiBool ? 1 : 0;
 
                 // tạo đối tượng phiếu mượn mới
-                phieumuon pm = new phieumuon();
-                pm.setMatt(matt);
-                pm.setMatv(matv);
-                pm.setMasach(masach);
-                pm.setTienthue(tienThue);
-                pm.setNgaythue(ngaythueStr);
-                pm.setTrangthai(trangthai);
+                if(ngaythueStr.isEmpty()){
+                    Toast.makeText(getContext(), "Không được để trống", Toast.LENGTH_SHORT).show();
+                }else if(!adapter.isValidDate(ngaythueStr)){
+                    Toast.makeText(getContext(), "Ngày thuê không hợp lệ", Toast.LENGTH_SHORT).show();
+                }else{
+                    phieumuon pm = new phieumuon();
+                    pm.setMatt(matt);
+                    pm.setMatv(matv);
+                    pm.setMasach(masach);
+                    pm.setTienthue(tienThue);
+                    pm.setNgaythue(ngaythueStr);
+                    pm.setTrangthai(trangthai);
 
-                dao.themPM(pm);
-                list.clear();
-                list.addAll(dao.getData());
-                adapter.notifyDataSetChanged();
+                    dao.themPM(pm);
+                    list.clear();
+                    list.addAll(dao.getData());
+                    adapter.notifyDataSetChanged();
 
-                dialog.dismiss();
+                    dialog.dismiss();
+                }
             }
         });
 

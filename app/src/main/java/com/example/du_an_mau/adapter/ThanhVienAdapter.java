@@ -12,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -121,15 +122,28 @@ public class ThanhVienAdapter extends BaseAdapter {
 
         convertView.findViewById(R.id.btnupdateTV).setOnClickListener(v -> {
             String hotentv = udhotentv.getText().toString();
-            int namsinhtv = Integer.parseInt(udnamsinhtv.getText().toString());
+            String namsinhtv = udnamsinhtv.getText().toString();
 
-            thanhvien tv1 = new thanhvien(tv.getMatv(), hotentv, namsinhtv);
+            if (hotentv.isEmpty() || namsinhtv.isEmpty()) {
+                Toast.makeText(context, "Không được để trống", Toast.LENGTH_SHORT).show();
+            } else {
+                try {
+                    int namsinh = Integer.parseInt(namsinhtv);
 
-            dao.suaTV(tv1);
-            list.clear();
-            list.addAll(dao.getData());
-            notifyDataSetChanged();
-            dialog.dismiss();
+                    if (namsinh <= 0) {
+                        Toast.makeText(context, "Năm sinh phải lớn hơn không", Toast.LENGTH_SHORT).show();
+                    } else {
+                        thanhvien tv1 = new thanhvien(tv.getMatv(), hotentv, namsinh);
+                        dao.suaTV(tv1);
+                        list.clear();
+                        list.addAll(dao.getData());
+                        notifyDataSetChanged();
+                        dialog.dismiss();
+                    }
+                } catch (NumberFormatException e) {
+                    Toast.makeText(context, "Năm sinh phải là số", Toast.LENGTH_SHORT).show();
+                }
+            }
         });
 
         convertView.findViewById(R.id.btnHuyUdTV).setOnClickListener(new View.OnClickListener() {

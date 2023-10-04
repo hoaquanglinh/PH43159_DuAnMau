@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.du_an_mau.DAO.ThanhVienDao;
 import com.example.du_an_mau.adapter.ThanhVienAdapter;
@@ -70,15 +71,30 @@ public class frm_thanh_vien extends Fragment {
             @Override
             public void onClick(View v) {
                 String tentv = addtentv.getText().toString();
-                int namsinh = Integer.parseInt(addnamsinh.getText().toString());
+                String namsinhtv = addnamsinh.getText().toString();
 
-                thanhvien tv = new thanhvien(tentv, namsinh);
+                if (tentv.isEmpty() || namsinhtv.isEmpty()){
+                    Toast.makeText(getContext(), "Không được để trống", Toast.LENGTH_SHORT).show();
+                }else{
+                    try {
+                        int namsinh = Integer.parseInt(namsinhtv);
 
-                dao.themTV(tv);
-                list.clear();
-                list.addAll(dao.getData());
-                adapter.notifyDataSetChanged();
-                dialog.dismiss();
+                        if (namsinh <= 0){
+                            Toast.makeText(getContext(), "Năm sinh phải lớn hơn 0", Toast.LENGTH_SHORT).show();
+                        }else{
+                            thanhvien tv = new thanhvien(tentv, namsinh);
+
+                            dao.themTV(tv);
+                            list.clear();
+                            list.addAll(dao.getData());
+                            adapter.notifyDataSetChanged();
+                            dialog.dismiss();
+                        }
+                    }catch (NumberFormatException e){
+                        Toast.makeText(getContext(), "Năm sinh phải là số", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
             }
         });
 

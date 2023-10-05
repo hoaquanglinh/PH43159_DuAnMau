@@ -87,13 +87,17 @@ public class SachDao {
     public void xoaSach(int masach){
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-
-        long check = db.delete("sach", "masach = ?", new String[]{String.valueOf(masach)});
-
-        if (check > 0){
-            Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();
+        Cursor cursor = db.rawQuery("select * from phieumuon where masach = ?", new String[]{String.valueOf(masach)});
+        if (cursor.getCount() != 0){
+            Toast.makeText(context, "Xóa không thành công do sách có trong phiếu mượn", Toast.LENGTH_SHORT).show();
         }else{
-            Toast.makeText(context, "Xóa thất bại", Toast.LENGTH_SHORT).show();
+            long check = db.delete("sach", "masach = ?", new String[]{String.valueOf(masach)});
+
+            if (check > 0){
+                Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(context, "Xóa thất bại", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }

@@ -84,12 +84,18 @@ public class ThanhVienDao {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        long check = db.delete("thanhvien", "matv = ?", new String[]{String.valueOf(matv)});
-
-        if (check > 0){
-            Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();
+        Cursor cursor = db.rawQuery("select * from phieumuon where matv = ?", new String[]{String.valueOf(matv)});
+        if (cursor.getCount() != 0){
+            Toast.makeText(context, "Xóa không thành công do thành viên có trong phiếu mượn", Toast.LENGTH_SHORT).show();
         }else{
-            Toast.makeText(context, "Xóa thất bại", Toast.LENGTH_SHORT).show();
+            long check = db.delete("thanhvien", "matv = ?", new String[]{String.valueOf(matv)});
+
+            if (check > 0){
+                Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(context, "Xóa thất bại", Toast.LENGTH_SHORT).show();
+            }
         }
+
     }
 }

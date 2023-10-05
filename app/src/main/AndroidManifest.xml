@@ -13,13 +13,13 @@
         android:theme="@style/Theme.Du_an_mau"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".ManHinhDangNhap"
             android:exported="false" />
         <activity
             android:name=".ManHinhChinh"
             android:exported="false" />
         <activity
-            android:name=".ManHinhDangNhap"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

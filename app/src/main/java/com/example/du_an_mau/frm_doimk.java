@@ -74,22 +74,4 @@ public class frm_doimk extends Fragment {
         return view;
     }
 
-    public int validate(){
-        int check = 1;
-        if(edPassOld.getText().length()==0 || edPass.getText().length() == 0 || edRePass.getText().length() ==0){
-            Toast.makeText(getContext(), "Bạn phải điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
-        }else{
-            SharedPreferences pref = getActivity().getSharedPreferences("user_file", Context.MODE_PRIVATE);
-            String passOld = pref.getString("password", "");
-            String pass = edPass.getText().toString();
-            String rePass = edRePass.getText().toString();
-
-            if(!passOld.equalsIgnoreCase(edPassOld.getText().toString())){
-                Toast.makeText(getContext(), "Sai mật khẩu cũ", Toast.LENGTH_SHORT).show();
-                check = -1;
-            }
-        }
-        return check;
-    }
-
 }

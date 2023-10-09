@@ -99,8 +99,7 @@ public class frm_thanh_vien extends Fragment {
         });
 
         convertView.findViewById(R.id.btnHuyAddTV).setOnClickListener(v -> {
-            addnamsinh.setText("");
-            addtentv.setText("");
+            dialog.dismiss();
         });
     }
 }

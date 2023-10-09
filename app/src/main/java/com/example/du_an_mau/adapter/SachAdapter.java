@@ -176,9 +176,7 @@ public class SachAdapter extends BaseAdapter {
         convertView.findViewById(R.id.btnHuyUdSach).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                spnudLS.setSelection(0);
-                edudTen.setText("");
-                edudGiaThue.setText("");
+                dialog.dismiss();
             }
         });
     }

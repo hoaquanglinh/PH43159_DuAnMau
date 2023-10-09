@@ -84,10 +84,7 @@ public class ThuThuDao {
 
         long check = db.insert("thuthu", null, values);
 
-        if (check > 0) {
-            Toast.makeText(context, "Thêm thành công",
-                    Toast.LENGTH_SHORT).show();
-        } else {
+        if (check <= 0) {
             Toast.makeText(context, "Thêm thất bại",
                     Toast.LENGTH_SHORT).show();
         }

@@ -114,9 +114,7 @@ public class frm_sach extends Fragment {
         view.findViewById(R.id.btnHuyAddSach).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                edaddTen.setText("");
-                edaddGiaThue.setText("");
-                spnLS.setSelection(0);
+                dialog.dismiss();
             }
         });
     }

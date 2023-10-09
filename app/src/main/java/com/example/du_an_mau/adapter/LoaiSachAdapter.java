@@ -133,7 +133,7 @@ public class LoaiSachAdapter extends BaseAdapter {
         convertView.findViewById(R.id.btnHuyLS).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                udtenloai.setText("");
+                dialog.dismiss();
             }
         });
     }

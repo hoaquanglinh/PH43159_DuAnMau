@@ -89,7 +89,7 @@ public class frm_loai_sach extends Fragment {
         convertView.findViewById(R.id.btnHuyAddLS).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addtenLS.setText("");
+                dialog.dismiss();
             }
         });
     }

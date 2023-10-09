@@ -258,16 +258,7 @@ public class PhieuMuonAdapter extends BaseAdapter {
         cacel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                spnUdTV.setSelection(0);
-                spnUdSach.setSelection(0);
-
-                tvTien.setText("");
-
-                edudngaythue.setText("");
-
-                trangthai.setText("");
-
-                chkTT.setChecked(false);
+                dialog.dismiss();
             }
         });
     }

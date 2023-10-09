@@ -149,8 +149,7 @@ public class ThanhVienAdapter extends BaseAdapter {
         convertView.findViewById(R.id.btnHuyUdTV).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                udhotentv.setText("");
-                udnamsinhtv.setText("");
+               dialog.dismiss();
             }
         });
     }

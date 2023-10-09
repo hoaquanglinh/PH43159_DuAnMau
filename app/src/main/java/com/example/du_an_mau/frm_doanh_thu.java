@@ -71,7 +71,7 @@ public class frm_doanh_thu extends Fragment {
                 String tuNgay = edTuNgay.getText().toString();
                 String denNgay = edDenNgay.getText().toString();
                 DoanhThuDao dao = new DoanhThuDao(getContext(), new DBHelper(getContext()));
-                tvDoanhThu.setText("Doanh thu: " + dao.getDoanhThu(tuNgay, denNgay));
+                tvDoanhThu.setText("Doanh thu: " + dao.getDoanhThu(tuNgay, denNgay) + "VND");
             }
         });
 
